@@ -1,13 +1,17 @@
 #
 # setup redis
 #
-- name: install Redis
-  yum: name={{ item }}
-       enablerepo=ius-testing
-       state=present
+- name: install redis
+  yum:
+    name: "{{ item }}"
+    enablerepo: ius-testing
+    state: present
   with_items: "{{ redis_packages }}"
   notify:
-    - restart Redis
+    - restart redis
 
-- name: enable Redis
-  service: name=redis state=started enabled=yes
+- name: enable redis
+  service:
+    name: redis
+    state: started
+    enabled: yes
